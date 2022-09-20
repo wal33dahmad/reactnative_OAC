@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "blank",
+    "slug": "oacmedia",
+    "version": "1.0.0",
+    "owner": "wal33dahmad",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ]
+  }
+}
