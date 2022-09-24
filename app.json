@@ -8,6 +8,14 @@
       "ios",
       "android",
       "web"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "a2dc5879-b609-4d55-9902-f799ed3133ab"
+      }
+    },
+    "android": {
+      "package": "com.wal33dahmad.oacmedia"
+    }
   }
 }
