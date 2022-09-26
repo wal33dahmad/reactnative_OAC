@@ -7,8 +7,13 @@ import { Form, FormField, SubmitButton } from "../components/forms";
 import Text from "../components/Text";
 import colors from "../config/colors";
 
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required().email().label("Email"),
+  phone: Yup.string()
+    .matches(phoneRegExp, "Phone number is not valid")
+    .required()
+    .label("Phone"),
   password: Yup.string().required().min(4).label("Password"),
 });
 
@@ -18,7 +23,7 @@ function LoginScreen({ navigation }) {
       <Text style={styles.logo}>OAC</Text>
 
       <Form
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ phone: "", password: "" }}
         onSubmit={(values) => {
           console.log(values);
           navigation.push("HomeScreen");
@@ -28,11 +33,11 @@ function LoginScreen({ navigation }) {
         <FormField
           autoCapitalize="none"
           autoCorrect={false}
-          icon="email"
-          keyboardType="email-address"
-          name="email"
-          placeholder="Email"
-          textContentType="emailAddress"
+          icon="phone"
+          keyboardType="phone-pad"
+          name="phone"
+          placeholder="Phone Number"
+          textContentType="telephoneNumber"
         />
         <FormField
           autoCapitalize="none"
