@@ -16,7 +16,7 @@ const HomeScreen = ({ navigation }) => {
           <Post post={post} key={index} />
         ))}
       </ScrollView>
-      <BottomTabs />
+      <BottomTabs navigation={navigation} />
     </Screen>
   );
 };

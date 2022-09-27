@@ -1,6 +1,6 @@
 export const BottomTabIcons = [
   {
-    name: "Home",
+    name: "HomeScreen",
     active: "home",
     inactive: "home-outline",
   },
@@ -10,7 +10,7 @@ export const BottomTabIcons = [
     inactive: "magnify",
   },
   {
-    name: "Chat",
+    name: "Chats",
     active: "message",
     inactive: "message-outline",
   },

@@ -3,7 +3,7 @@ import { useFormikContext } from "formik";
 
 import Button from "../Button";
 
-function SubmitButton({ title }) {
+function SubmitButton({ title, style }) {
   const { handleSubmit } = useFormikContext();
 
   return (
@@ -12,6 +12,7 @@ function SubmitButton({ title }) {
       onPress={handleSubmit}
       backgroundColor="light"
       color="dark"
+      style={style}
     />
   );
 }

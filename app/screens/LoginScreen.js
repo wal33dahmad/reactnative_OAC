@@ -24,11 +24,11 @@ function LoginScreen({ navigation }) {
 
       <Form
         initialValues={{ phone: "", password: "" }}
+        validationSchema={validationSchema}
         onSubmit={(values) => {
           console.log(values);
           navigation.push("HomeScreen");
         }}
-        validationSchema={validationSchema}
       >
         <FormField
           autoCapitalize="none"

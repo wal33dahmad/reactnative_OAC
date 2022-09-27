@@ -7,10 +7,13 @@ import {
   View,
 } from "react-native";
 import { Divider } from "@rneui/themed";
+import * as Yup from "yup";
 
 import AppText from "../Text";
 import TouchableIcon from "../TouchableIcon";
 import colors from "../../config/colors";
+import { Form, FormField, SubmitButton } from "../forms";
+import { useEffect } from "react";
 
 const PostHeader = ({ post }) => (
   <View style={styles.head_container}>
@@ -146,6 +149,50 @@ const PostSingleComment = ({ post }) => (
   </View>
 );
 
+const PostNewComment = ({ post }) => {
+  let commentsArr;
+  useEffect(() => {
+    commentsArr = post.comments;
+    console.log(commentsArr, "commentsArray");
+  }, []);
+
+  return (
+    <Form
+      initialValues={{ comment: "" }}
+      validationSchema={Yup.object().shape({
+        comment: Yup.string(),
+      })}
+      onSubmit={(values, { resetForm }) => {
+        commentsArr.push(values);
+        console.log(commentsArr);
+        resetForm();
+      }}
+    >
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <FormField
+          name="comment"
+          autoCapitalize="none"
+          autoCorrect={false}
+          keyboardType="default"
+          placeholder="Add a comment..."
+          width="70%"
+        />
+        <SubmitButton
+          title="POST"
+          style={{ width: "25%", backgroundColor: colors.primary }}
+        />
+      </View>
+    </Form>
+  );
+};
+
 const Post = ({ post }) => {
   return (
     <View style={{ marginBottom: 30 }}>
@@ -157,6 +204,7 @@ const Post = ({ post }) => {
         <PostLikes post={post} />
         <PostCaption post={post} />
         <PostCommentsSection post={post} />
+        <PostNewComment post={post} />
       </View>
     </View>
   );

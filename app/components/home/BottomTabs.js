@@ -6,8 +6,8 @@ import TouchableIcon from "../TouchableIcon";
 import { BottomTabIcons } from "../../data/bottomIcons";
 import colors from "../../config/colors";
 
-const BottomTabs = () => {
-  const [activeTab, setActiveTab] = useState("Home");
+const BottomTabs = ({ navigation }) => {
+  const [activeTab, setActiveTab] = useState("HomeScreen");
 
   return (
     <View style={styles.wrapper}>
@@ -21,7 +21,10 @@ const BottomTabs = () => {
             key={index}
             name={activeTab === item.name ? item.active : item.inactive}
             size={30}
-            onPress={() => setActiveTab(item.name)}
+            onPress={() => {
+              setActiveTab(item.name);
+              navigation.push(item.name);
+            }}
           />
         ))}
       </View>
