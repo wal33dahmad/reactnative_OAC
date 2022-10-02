@@ -5,22 +5,22 @@ export const BottomTabIcons = [
     inactive: "home-outline",
   },
   {
-    name: "Search",
+    name: "SearchScreen",
     active: "magnify",
     inactive: "magnify",
   },
   {
-    name: "Chats",
+    name: "MessagesScreen",
     active: "message",
     inactive: "message-outline",
   },
   {
-    name: "Reel",
+    name: "ReelsScreen",
     active: "video",
     inactive: "video-outline",
   },
   {
-    name: "Profile",
+    name: "AccountScreen",
     active: "account",
     inactive: "account-outline",
   },

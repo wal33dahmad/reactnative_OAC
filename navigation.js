@@ -8,7 +8,10 @@ import RegisterScreen2 from "./app/screens/RegisterScreen2";
 import RegisterScreen3 from "./app/screens/RegisterScreen3";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
 import RegisterScreen4 from "./app/screens/RegisterScreen4";
-import Chats from "./app/screens/Chats";
+import MessagesScreen from "./app/screens/MessagesScreen";
+import AccountScreen from "./app/screens/AccountScreen";
+import SearchScreen from "./app/screens/SearchScreen";
+import ReelsScreen from "./app/screens/ReelsScreen";
 
 const Stack = createStackNavigator();
 
@@ -29,7 +32,10 @@ const SignedInStack = () => (
       <Stack.Screen name="RegisterScreen4" component={RegisterScreen4} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="ListingEditScreen" component={ListingEditScreen} />
-      <Stack.Screen name="Chats" component={Chats} />
+      <Stack.Screen name="MessagesScreen" component={MessagesScreen} />
+      <Stack.Screen name="AccountScreen" component={AccountScreen} />
+      <Stack.Screen name="SearchScreen" component={SearchScreen} />
+      <Stack.Screen name="ReelsScreen" component={ReelsScreen} />
     </Stack.Navigator>
   </NavigationContainer>
 );

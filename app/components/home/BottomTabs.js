@@ -4,18 +4,14 @@ import { Divider } from "@rneui/themed";
 
 import TouchableIcon from "../TouchableIcon";
 import { BottomTabIcons } from "../../data/bottomIcons";
-import colors from "../../config/colors";
 
 const BottomTabs = ({ navigation }) => {
-  const [activeTab, setActiveTab] = useState("HomeScreen");
+  const [activeTab, setActiveTab] = useState("");
 
   return (
     <View style={styles.wrapper}>
       <Divider width={1} orientation="vertical" />
       <View style={styles.container}>
-        {/* <TouchableIcon name={"home-outline"} size={30} />
-        <TouchableIcon name={"message-outline"} size={30} badge={9} />
-        <TouchableIcon name={"video-outline"} size={30} badge={20} /> */}
         {BottomTabIcons.map((item, index) => (
           <TouchableIcon
             key={index}
