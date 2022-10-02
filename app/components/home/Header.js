@@ -13,7 +13,7 @@ const Header = ({ navigation }) => {
         <TouchableIcon
           name={"plus-box-outline"}
           size={30}
-          onPress={() => navigation.push("NewPostScreen")}
+          onPress={() => navigation.push("ListingEditScreen")}
         />
         <TouchableIcon
           name={"bell-outline"}

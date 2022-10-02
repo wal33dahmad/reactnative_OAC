@@ -7,7 +7,6 @@ import Text from "../components/Text";
 import { Form, FormField, SubmitButton } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
   confirmPassword: Yup.string()
     .required()
@@ -21,22 +20,13 @@ function RegisterScreen({ navigation }) {
       <Text style={styles.h1}>Let's set up a password for you</Text>
       <Text style={styles.text}>Enter your email and password.</Text>
       <Form
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ password: "" }}
         onSubmit={(values) => {
           console.log(values);
           navigation.push("RegisterScreen4");
         }}
         validationSchema={validationSchema}
       >
-        <FormField
-          autoCapitalize="none"
-          autoCorrect={false}
-          icon="email"
-          keyboardType="email-address"
-          name="email"
-          placeholder="Email"
-          textContentType="emailAddress"
-        />
         <FormField
           autoCapitalize="none"
           autoCorrect={false}

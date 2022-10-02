@@ -17,7 +17,7 @@ function ImageInput({ imageUri, onChangeImage }) {
   }, []);
 
   const requestPermission = async () => {
-    const { granted } = await ImagePicker.requestCameraRollPermissionsAsync();
+    const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!granted) alert("You need to enable permission to access the library.");
   };
 
@@ -33,7 +33,7 @@ function ImageInput({ imageUri, onChangeImage }) {
   const selectImage = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
         quality: 0.5,
       });
       if (!result.cancelled) onChangeImage(result.uri);

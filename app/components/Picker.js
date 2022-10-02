@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
+    color: "black",
   },
 });
 

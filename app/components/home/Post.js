@@ -98,11 +98,16 @@ const PostCaption = ({ post }) => (
 
 const PostCommentsSection = ({ post }) => {
   const [showComments, setShowComments] = useState(0);
+  const [commentsArr, setCommentsArr] = useState([]);
+  useEffect(() => {
+    setCommentsArr(post.comments);
+    console.log(commentsArr);
+  }, []);
   return (
     <View style={{ marginTop: 5 }}>
-      {!!post.comments.length && (
+      {!!commentsArr.length && (
         <View>
-          {post.comments.length > 1 ? (
+          {commentsArr.length > 1 ? (
             <>
               <TouchableOpacity
                 onPress={() => {
@@ -110,30 +115,65 @@ const PostCommentsSection = ({ post }) => {
                 }}
               >
                 <AppText style={{ color: "gray" }}>
-                  View all {post.comments.length} comments
+                  View all {commentsArr.length} comments
                 </AppText>
               </TouchableOpacity>
               {showComments ? (
-                <PostComments post={post} />
+                <PostComments post={commentsArr} />
               ) : (
-                <PostSingleComment post={post} />
+                <PostSingleComment post={commentsArr} />
               )}
             </>
           ) : (
             <>
               <AppText style={{ color: "gray" }}>View 1 comment</AppText>
-              <PostSingleComment post={post} />
+              <PostSingleComment post={commentsArr} />
             </>
           )}
         </View>
       )}
+      <Form
+        initialValues={{ comment: "" }}
+        validationSchema={Yup.object().shape({
+          comment: Yup.string(),
+        })}
+        onSubmit={(values, { resetForm }) => {
+          setCommentsArr([
+            ...commentsArr,
+            { comment: values.comment, user: "Anonymous" },
+          ]);
+          resetForm();
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <FormField
+            name="comment"
+            autoCapitalize="none"
+            autoCorrect={false}
+            keyboardType="default"
+            placeholder="Add a comment..."
+            width="70%"
+          />
+          <SubmitButton
+            title="POST"
+            style={{ width: "25%", backgroundColor: colors.primary }}
+          />
+        </View>
+      </Form>
     </View>
   );
 };
 
 const PostComments = ({ post }) => (
   <>
-    {post.comments.map((comment, index) => (
+    {post.map((comment, index) => (
       <View key={index} style={{ flexDirection: "row", marginTop: 5 }}>
         <AppText style={{ fontWeight: "600" }}>{comment.user}</AppText>
         <AppText> {comment.comment}</AppText>
@@ -144,54 +184,10 @@ const PostComments = ({ post }) => (
 
 const PostSingleComment = ({ post }) => (
   <View style={{ flexDirection: "row", marginTop: 5 }}>
-    <AppText style={{ fontWeight: "600" }}>{post.comments[0].user}</AppText>
-    <AppText> {post.comments[0].comment}</AppText>
+    <AppText style={{ fontWeight: "600" }}>{post[0].user}</AppText>
+    <AppText> {post[0].comment}</AppText>
   </View>
 );
-
-const PostNewComment = ({ post }) => {
-  let commentsArr;
-  useEffect(() => {
-    commentsArr = post.comments;
-    console.log(commentsArr, "commentsArray");
-  }, []);
-
-  return (
-    <Form
-      initialValues={{ comment: "" }}
-      validationSchema={Yup.object().shape({
-        comment: Yup.string(),
-      })}
-      onSubmit={(values, { resetForm }) => {
-        commentsArr.push(values);
-        console.log(commentsArr);
-        resetForm();
-      }}
-    >
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          width: "100%",
-        }}
-      >
-        <FormField
-          name="comment"
-          autoCapitalize="none"
-          autoCorrect={false}
-          keyboardType="default"
-          placeholder="Add a comment..."
-          width="70%"
-        />
-        <SubmitButton
-          title="POST"
-          style={{ width: "25%", backgroundColor: colors.primary }}
-        />
-      </View>
-    </Form>
-  );
-};
 
 const Post = ({ post }) => {
   return (
@@ -204,7 +200,6 @@ const Post = ({ post }) => {
         <PostLikes post={post} />
         <PostCaption post={post} />
         <PostCommentsSection post={post} />
-        <PostNewComment post={post} />
       </View>
     </View>
   );
