@@ -46,7 +46,10 @@ function MessagesScreen({ navigation }) {
             title={item.title}
             subTitle={item.description}
             image={item.image}
-            onPress={() => console.log("Message selected", item)}
+            onPress={() => {
+              navigation.push("ChatScreen");
+              console.log("Message selected", item);
+            }}
             renderRightActions={() => (
               <ListItemDeleteAction onPress={() => handleDelete(item)} />
             )}

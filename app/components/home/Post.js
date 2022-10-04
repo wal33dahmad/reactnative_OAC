@@ -158,6 +158,7 @@ const PostCommentsSection = ({ post }) => {
             autoCapitalize="none"
             autoCorrect={false}
             keyboardType="default"
+            padding={10}
             placeholder="Add a comment..."
             width="70%"
           />

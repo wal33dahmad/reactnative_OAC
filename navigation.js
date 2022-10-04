@@ -12,6 +12,8 @@ import MessagesScreen from "./app/screens/MessagesScreen";
 import AccountScreen from "./app/screens/AccountScreen";
 import SearchScreen from "./app/screens/SearchScreen";
 import ReelsScreen from "./app/screens/ReelsScreen";
+import ChatScreen from "./app/screens/ChatScreen";
+import CallScreen from "./app/screens/CallScreen";
 
 const Stack = createStackNavigator();
 
@@ -36,6 +38,8 @@ const SignedInStack = () => (
       <Stack.Screen name="AccountScreen" component={AccountScreen} />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen name="ReelsScreen" component={ReelsScreen} />
+      <Stack.Screen name="ChatScreen" component={ChatScreen} />
+      <Stack.Screen name="CallScreen" component={CallScreen} />
     </Stack.Navigator>
   </NavigationContainer>
 );

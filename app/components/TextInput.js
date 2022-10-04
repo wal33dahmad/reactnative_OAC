@@ -6,12 +6,13 @@ import defaultStyles from "../config/styles";
 
 function AppTextInput({
   icon,
-  width = "100%",
+  padding = 15,
   placeholder = "",
+  width = "100%",
   ...otherProps
 }) {
   return (
-    <View style={[styles.container, { width }]}>
+    <View style={[styles.container, { width, padding }]}>
       {icon && (
         <MaterialCommunityIcons
           name={icon}
@@ -35,7 +36,6 @@ const styles = StyleSheet.create({
     backgroundColor: defaultStyles.colors.light,
     borderRadius: 25,
     flexDirection: "row",
-    padding: 15,
     marginVertical: 10,
     alignItems: "center",
   },
