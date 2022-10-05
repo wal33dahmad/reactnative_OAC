@@ -9,6 +9,7 @@ import Screen from "../components/Screen";
 import colors from "../config/colors";
 const menuItems = [
   {
+    screen: "PostsScreen",
     title: "My Posts",
     icon: {
       name: "post",
@@ -16,6 +17,7 @@ const menuItems = [
     },
   },
   {
+    screen: "FriendsScreen",
     title: "My Friends",
     icon: {
       name: "account-group",
@@ -42,6 +44,7 @@ function AccountScreen({ navigation }) {
           ItemSeparatorComponent={ListItemSeparator}
           renderItem={({ item }) => (
             <ListItem
+              onPress={() => navigation.push(item.screen)}
               title={item.title}
               IconComponent={
                 <AccountIcon
@@ -56,6 +59,7 @@ function AccountScreen({ navigation }) {
       <ListItem
         title="Log Out"
         IconComponent={<AccountIcon name="logout" backgroundColor="grey" />}
+        onPress={() => navigation.push("LoginScreen")}
       />
       <BottomTabs navigation={navigation} />
     </Screen>

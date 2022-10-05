@@ -11,4 +11,5 @@ export default {
   danger: "#ff5252",
   background: "#20194D",
   bottom: "#120E2E",
+  darkGrey: "#333",
 };

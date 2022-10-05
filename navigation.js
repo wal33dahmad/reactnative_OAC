@@ -14,6 +14,7 @@ import SearchScreen from "./app/screens/SearchScreen";
 import ReelsScreen from "./app/screens/ReelsScreen";
 import ChatScreen from "./app/screens/ChatScreen";
 import CallScreen from "./app/screens/CallScreen";
+import FriendsScreen from "./app/screens/FriendsScreen";
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,7 @@ const SignedInStack = () => (
       <Stack.Screen name="ReelsScreen" component={ReelsScreen} />
       <Stack.Screen name="ChatScreen" component={ChatScreen} />
       <Stack.Screen name="CallScreen" component={CallScreen} />
+      <Stack.Screen name="FriendsScreen" component={FriendsScreen} />
     </Stack.Navigator>
   </NavigationContainer>
 );
