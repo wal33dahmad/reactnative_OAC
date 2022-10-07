@@ -80,10 +80,20 @@ const ChatScreen = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          {
+            backgroundColor: colors.black,
+            borderTopWidth: 2,
+            borderTopColor: colors.darkGrey,
+          },
+        ]}
+      >
         <TouchableIcon name="camera" size={25} />
+        <TextInput placeholder="Message" padding={8} width={"70%"} />
         <TouchableIcon name="microphone" size={25} />
-        <TextInput placeholder="Message" padding={8} width={"80%"} />
+        <TouchableIcon name="send" size={25} />
       </View>
     </Screen>
   );
@@ -97,7 +107,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 8,
     backgroundColor: colors.darkGreen,
     width: "100%",
   },
@@ -111,14 +121,14 @@ const styles = StyleSheet.create({
   },
   incoming: {
     borderRadius: 50,
-    padding: 20,
+    padding: 10,
     backgroundColor: colors.darkGrey,
     marginVertical: 1,
     marginLeft: 10,
   },
   outgoing: {
     borderRadius: 50,
-    padding: 20,
+    padding: 10,
     backgroundColor: colors.darkGreen,
     marginVertical: 1,
     marginRight: 20,

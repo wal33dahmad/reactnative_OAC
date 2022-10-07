@@ -1,19 +1,55 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-
-import BottomTabs from "../components/home/BottomTabs";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text } from "react-native";
 import Screen from "../components/Screen";
+import List from "../components/search/List";
+import SearchBar from "../components/search/SearchBar";
 import colors from "../config/colors";
-import AppTextInput from "../components/TextInput";
 
-const SearchScreen = ({ navigation }) => {
+const users = [
+  {
+    id: 1,
+    name: "Waleed",
+    image:
+      "https://www.unigreet.com/wp-content/uploads/2020/04/Smiley-816x1024.jpg",
+  },
+  {
+    id: 2,
+    name: "Ukasha",
+    image:
+      "https://www.unigreet.com/wp-content/uploads/2020/04/Smiley-816x1024.jpg",
+  },
+  {
+    id: 3,
+    name: "Babar",
+    image:
+      "https://www.unigreet.com/wp-content/uploads/2020/04/Smiley-816x1024.jpg",
+  },
+];
+
+const SearchScreen = () => {
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const [clicked, setClicked] = useState(false);
+  const [fakeData, setFakeData] = useState();
+
+  useEffect(() => {
+    setFakeData(users);
+  }, []);
+
   return (
-    <Screen>
-      <View style={styles.container}>
-        <Text style={styles.text}>Search people</Text>
-        <AppTextInput placeholder="Search friends..." width="75%" />
-      </View>
-      <BottomTabs navigation={navigation} />
+    <Screen style={styles.root}>
+      <Text style={styles.title}>Search Friends</Text>
+      <SearchBar
+        searchPhrase={searchPhrase}
+        setSearchPhrase={setSearchPhrase}
+        clicked={clicked}
+        setClicked={setClicked}
+      />
+
+      <List
+        searchPhrase={searchPhrase}
+        data={fakeData}
+        setClicked={setClicked}
+      />
     </Screen>
   );
 };
@@ -21,12 +57,16 @@ const SearchScreen = ({ navigation }) => {
 export default SearchScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 50,
+  root: {
+    justifyContent: "center",
     alignItems: "center",
   },
-  text: {
-    fontSize: 30,
+  title: {
+    width: "100%",
+    marginTop: 20,
+    fontSize: 25,
+    fontWeight: "bold",
+    marginLeft: "10%",
     color: colors.white,
   },
 });

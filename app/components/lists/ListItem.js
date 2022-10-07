@@ -32,7 +32,7 @@ function ListItem({
           </View>
           <MaterialCommunityIcons
             color={colors.medium}
-            name="chevron-right"
+            name="chevron-left"
             size={25}
           />
         </View>
