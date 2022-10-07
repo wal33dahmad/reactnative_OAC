@@ -8,12 +8,19 @@ import {
   Image,
 } from "react-native";
 import colors from "../../config/colors";
+import TouchableIcon from "../TouchableIcon";
 
 // definition of the Item, which will be rendered in the FlatList
 const Item = ({ name, image }) => (
   <View style={styles.item}>
     <Image source={{ uri: image }} style={styles.image} />
     <Text style={styles.title}>{name}</Text>
+    <TouchableIcon
+      name={"account-plus"}
+      size={30}
+      style={styles.icon}
+      onPress={() => {}}
+    />
   </View>
 );
 
@@ -79,5 +86,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderWidth: 1.6,
     borderColor: "#FF8501",
+  },
+  icon: {
+    marginLeft: 10,
   },
 });
