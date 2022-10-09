@@ -15,6 +15,7 @@ import ReelsScreen from "./app/screens/ReelsScreen";
 import ChatScreen from "./app/screens/ChatScreen";
 import CallScreen from "./app/screens/CallScreen";
 import FriendsScreen from "./app/screens/FriendsScreen";
+import PostsScreen from "./app/screens/PostsScreen";
 
 const Stack = createStackNavigator();
 
@@ -28,20 +29,21 @@ const SignedInStack = () => (
       initialRouteName="LoginScreen"
       screenOptions={screenOptions}
     >
+      <Stack.Screen name="AccountScreen" component={AccountScreen} />
+      <Stack.Screen name="CallScreen" component={CallScreen} />
+      <Stack.Screen name="ChatScreen" component={ChatScreen} />
+      <Stack.Screen name="FriendsScreen" component={FriendsScreen} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="ListingEditScreen" component={ListingEditScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen name="MessagesScreen" component={MessagesScreen} />
+      <Stack.Screen name="PostsScreen" component={PostsScreen} />
+      <Stack.Screen name="ReelsScreen" component={ReelsScreen} />
       <Stack.Screen name="RegisterScreen1" component={RegisterScreen1} />
       <Stack.Screen name="RegisterScreen2" component={RegisterScreen2} />
       <Stack.Screen name="RegisterScreen3" component={RegisterScreen3} />
       <Stack.Screen name="RegisterScreen4" component={RegisterScreen4} />
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
-      <Stack.Screen name="ListingEditScreen" component={ListingEditScreen} />
-      <Stack.Screen name="MessagesScreen" component={MessagesScreen} />
-      <Stack.Screen name="AccountScreen" component={AccountScreen} />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
-      <Stack.Screen name="ReelsScreen" component={ReelsScreen} />
-      <Stack.Screen name="ChatScreen" component={ChatScreen} />
-      <Stack.Screen name="CallScreen" component={CallScreen} />
-      <Stack.Screen name="FriendsScreen" component={FriendsScreen} />
     </Stack.Navigator>
   </NavigationContainer>
 );

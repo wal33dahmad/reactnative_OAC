@@ -1,26 +1,22 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  SafeAreaView,
-  Image,
-} from "react-native";
+import { TouchableHighlight } from "react-native";
+import { StyleSheet, View, FlatList, SafeAreaView, Image } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import colors from "../../config/colors";
 import TouchableIcon from "../TouchableIcon";
+import Text from "../Text";
 
 // definition of the Item, which will be rendered in the FlatList
 const Item = ({ name, image }) => (
-  <View style={styles.item}>
-    <Image source={{ uri: image }} style={styles.image} />
-    <Text style={styles.title}>{name}</Text>
-    <TouchableIcon
-      name={"account-plus"}
-      size={30}
-      style={styles.icon}
-      onPress={() => {}}
-    />
+  <View style={styles.container}>
+    {image && <Image style={styles.image} source={{ uri: image }} />}
+    <View style={styles.detailsContainer}>
+      <Text style={styles.title} numberOfLines={1}>
+        {name}
+      </Text>
+    </View>
+    <TouchableIcon name={"account-plus"} iconColor={colors.black} />
   </View>
 );
 
@@ -60,34 +56,30 @@ const styles = StyleSheet.create({
   list__container: {
     margin: 10,
     height: "85%",
-    width: "100%",
+    width: "80%",
   },
-  item: {
-    margin: 30,
-    borderBottomWidth: 2,
-    borderBottomColor: colors.light,
-    flexDirection: "row",
-    justifyContent: "flex-start",
+  container: {
     alignItems: "center",
-    paddingBottom: 5,
+    flexDirection: "row",
+    width: "100%",
+    padding: 15,
+    justifyContent: "space-between",
+    backgroundColor: colors.white,
+    borderBottomWidth: 2,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 5,
-    fontStyle: "italic",
-    color: colors.white,
+  detailsContainer: {
+    marginLeft: 10,
+    justifyContent: "center",
   },
   image: {
     width: 35,
     height: 35,
-    resizeMode: "contain",
-    borderRadius: 50,
-    marginRight: 10,
-    borderWidth: 1.6,
-    borderColor: "#FF8501",
+    borderRadius: 35,
   },
-  icon: {
-    marginLeft: 10,
+
+  title: {
+    fontSize: 25,
+    fontWeight: "500",
+    color: colors.black,
   },
 });

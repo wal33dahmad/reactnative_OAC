@@ -15,14 +15,20 @@ import colors from "../../config/colors";
 import { Form, FormField, SubmitButton } from "../forms";
 import { useEffect } from "react";
 
-const PostHeader = ({ post }) => (
+const PostHeader = ({ post, DeleteButton }) => (
   <View style={styles.head_container}>
     <View style={{ flexDirection: "row", alignItems: "center" }}>
       <Image source={{ uri: post.profile_picture }} style={styles.head_image} />
       <AppText style={styles.head_title}>{post.user}</AppText>
     </View>
     <TouchableOpacity hitSlop={10}>
-      <AppText style={{ fontWeight: "900", color: colors.bottom }}>...</AppText>
+      {DeleteButton ? (
+        <TouchableIcon name={"delete"} iconColor={colors.danger} size={25} />
+      ) : (
+        <AppText style={{ fontWeight: "900", color: colors.bottom }}>
+          ...
+        </AppText>
+      )}
     </TouchableOpacity>
   </View>
 );
@@ -96,7 +102,7 @@ const PostCaption = ({ post }) => (
   </View>
 );
 
-const PostCommentsSection = ({ post }) => {
+const PostCommentsSection = ({ post, CommentSection }) => {
   const [showComments, setShowComments] = useState(0);
   const [commentsArr, setCommentsArr] = useState([]);
   useEffect(() => {
@@ -132,42 +138,44 @@ const PostCommentsSection = ({ post }) => {
           )}
         </View>
       )}
-      <Form
-        initialValues={{ comment: "" }}
-        validationSchema={Yup.object().shape({
-          comment: Yup.string(),
-        })}
-        onSubmit={(values, { resetForm }) => {
-          setCommentsArr([
-            ...commentsArr,
-            { comment: values.comment, user: "Anonymous" },
-          ]);
-          resetForm();
-        }}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            width: "100%",
+      {CommentSection && (
+        <Form
+          initialValues={{ comment: "" }}
+          validationSchema={Yup.object().shape({
+            comment: Yup.string(),
+          })}
+          onSubmit={(values, { resetForm }) => {
+            setCommentsArr([
+              ...commentsArr,
+              { comment: values.comment, user: "Anonymous" },
+            ]);
+            resetForm();
           }}
         >
-          <FormField
-            name="comment"
-            autoCapitalize="none"
-            autoCorrect={false}
-            keyboardType="default"
-            padding={10}
-            placeholder="Add a comment..."
-            width="70%"
-          />
-          <SubmitButton
-            title="POST"
-            style={{ width: "25%", backgroundColor: colors.primary }}
-          />
-        </View>
-      </Form>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <FormField
+              name="comment"
+              autoCapitalize="none"
+              autoCorrect={false}
+              keyboardType="default"
+              padding={10}
+              placeholder="Add a comment..."
+              width="70%"
+            />
+            <SubmitButton
+              title="POST"
+              style={{ width: "25%", backgroundColor: colors.primary }}
+            />
+          </View>
+        </Form>
+      )}
     </View>
   );
 };
@@ -190,17 +198,33 @@ const PostSingleComment = ({ post }) => (
   </View>
 );
 
-const Post = ({ post }) => {
+const Post = ({
+  post,
+  withHeader = true,
+  withImage = true,
+  withFooter = true,
+  withLikes = true,
+  withComments = true,
+  withCommentSection = true,
+  withDeleteButton = false,
+  deletePost,
+}) => {
   return (
     <View style={{ marginBottom: 30 }}>
       <Divider width={1} orientation="vertical" />
-      <PostHeader post={post} />
-      <PostImage post={post} />
-      <PostFooter post={post} />
+      {withHeader && (
+        <PostHeader
+          post={post}
+          DeleteButton={withDeleteButton}
+          deletePost={deletePost}
+        />
+      )}
+      {withImage && <PostImage post={post} />}
+      {withFooter && <PostFooter post={post} />}
       <View style={{ marginHorizontal: 10, marginTop: 5 }}>
-        <PostLikes post={post} />
-        <PostCaption post={post} />
-        <PostCommentsSection post={post} />
+        {withLikes && <PostLikes post={post} />}
+        {withComments && <PostCaption post={post} />}
+        <PostCommentsSection post={post} CommentSection={withCommentSection} />
       </View>
     </View>
   );
